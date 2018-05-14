@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>La petite liste noir de Rached</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-toolbar *ngIf="empty">modify</ion-toolbar>
+  <span *ngIf="Database.isEmpty()">
+    <mat-card>
+      <mat-card-title>
+        La liste noire est vide.
+      </mat-card-title>
+    </mat-card>
+  </span>
+  <span *ngIf="!Database.isEmpty()">
+    <ion-row>
+      <ion-col col-5>Nom</ion-col>
+      <ion-col col-5>Prénom</ion-col>
+      <ion-col col-2>Âge</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let person of Database">
+      <ion-col col-5 *ngIf="modify"><input type="text" name="FirstName" value="[(person.lastName)]"></ion-col>
+      <ion-col col-5 *ngIf="!modify">{{person.lastName}}</ion-col>
+      <ion-col col-5 *ngIf="modify"><input type="text" name="FirstName" value="[(person.firstName)]"></ion-col>
+      <ion-col col-5 *ngIf="!modify">{{person.firstName}}</ion-col>
+      <ion-col col-2 *ngIf="modify"><input type="text" name="FirstName" value="[(person.age)]"></ion-col>
+      <ion-col col-2 *ngIf="!modify">{{person.age}}</ion-col>
+    </ion-row>
+    <ion-fab full right bottom>
+      <button ion-fab full (click)="ajouter()"><ion-icon name="add-circle-outline"></ion-icon></button>
+    </ion-fab>
+  </span>
+  
+  <ion-fab right bottom>
+    <button ion-fab style="float: right;" (click)="goAddElement()"><img style="position:center;" src="../../assets/imgs/add.png" /></button>
+  </ion-fab>
+</ion-content>

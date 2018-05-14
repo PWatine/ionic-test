@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Ajouter un nom</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <form class="example-form" action="Database.add()">
+
+
+    <ion-input matInput color="primary" type="text" placeHolder="First name" floating value="[person.firstName]"></ion-input>
+    <p>Enter a valid name, no numbers.</p>
+
+    <p color="red" *ngIf="true">
+      First name is <strong>required</strong>
+    </p>
+
+    <ion-input matInput color="primary" type="text" placeHolder="Last name" floating value="[person.lastName]"></ion-input>
+    <p>Enter a valid name, no numbers.</p>
+
+    <p color="red" *ngIf="true">
+      Last name is <strong>required</strong>
+    </p>
+
+    <ion-input matInput name="age" color="primary" type="number" placeHolder="age" floating [(ngModel)]="age">0</ion-input>
+    <p>Enter a valid age.</p>
+    <p color="red" *ngIf="age.$dirty && validNumber(person.age)">
+      I don't believe you... Please enter that person's real age.
+    </p>
+    <p color="red" *ngIf="true">
+      Age is <strong>required</strong>
+    </p>
+    <!--
+        <input mat-button  color="primary" style="color:mediumorchid" value="Add him! >:D" type:"submit" />
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+  -->
+  </form>
+</ion-content>

@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\resources",
+    "\\resources\\android",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\ajouter",
+    "\\src\\pages\\home",
+    "\\src\\providers",
+    "\\src\\providers\\database"
+  ],
+  "PreviewInSolutionExplorer": false
+}
