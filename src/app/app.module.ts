@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler, App,} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule,MatCardModule, MatIconModule } from '@angular/material';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,12 +12,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AjouterPage } from '../pages/ajouter/ajouter';
 import { Database } from '../providers/database/database';
 import { HomePage } from '../pages/home/home';
+import { person } from '../Blacklist/person';
 
 @NgModule({
   declarations: [
     MyApp,
     AjouterPage,
-    HomePage
+    HomePage,
+
   ],
 
   imports: [
@@ -27,12 +29,6 @@ import { HomePage } from '../pages/home/home';
     MatCardModule, 
     MatIconModule,
     MatInputModule,
-    FormBuilder,
-    FormGroup,
-    FormControl,
-    FormGroupDirective,
-    NgForm,
-    Validators,
     MatFormFieldModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
@@ -44,12 +40,6 @@ import { HomePage } from '../pages/home/home';
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    FormBuilder,
-    FormGroup,
-    FormControl,
-    FormGroupDirective,
-    NgForm,
-    Validators,
     MatFormFieldModule
   ],
   entryComponents: [
