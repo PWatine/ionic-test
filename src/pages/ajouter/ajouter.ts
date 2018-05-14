@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ToastController,ToastOptions, NavController, NavParams } from 'ionic-angular';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { person } from '../../Blacklist/person';
 import { Database } from '../../providers/database/database';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -18,23 +19,34 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'page-ajouter',
   templateUrl: 'ajouter.html'
+  
 })
 export class AjouterPage {
-  constructor(public nav: NavController) {
-    
+
+  options: ToastOptions;
+  constructor(private toast: ToastController, public nav: NavController, public tempperson: person, public db: Database) {
+    this.options = { message: tempperson.firstName + ' ' + tempperson.lastName+' has been added.', duration:2000,  }
   }
-  validNumber(a: any){
+  public validNumber(a: any){
     return (a.isNumber && a < 120 && a >= 0);
   }
-  validName(x:string) {
+  public validName(x:string) {
     for (var a = 0; a < 10; a++) {
       if (x.indexOf('a') != -1) {
         return false;
       }
     }
+    
     return true;
   }
-  
+  public condemn(x: string, y:string, z:number) {
+    this.db.add(x,y,z);
+    this.notify();
+  }
+  public notify() {
+    var a = this.toast.create(this.options).present();
+        
+  }
 }
 
 

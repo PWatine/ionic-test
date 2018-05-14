@@ -9,6 +9,7 @@ export class person {
   lastName: string;
   age: number=0;
   id: number;
+ 
   constructor(a: string, b: string, c: number, d: number) {
     this.firstName = a;
     this.lastName = b;

@@ -11,7 +11,7 @@ export class Database {
     this.id=0;
   }
     
-  isEmpty() {
+  public isEmpty() {
     if(this.counter == 0){
      return true;
     }
@@ -19,13 +19,13 @@ export class Database {
       return false;
     }
   }
-  add(a, b, c) {
+  public add(a, b, c) {
     let person = { firstName: a, lastName: b, age: c, id: this.id };
     this.storage.set(this.id.toString(), JSON.stringify(person))
     this.counter++;
     this.id++;
   }
-  remove(id) {
+  public  remove(id) {
     this.storage.remove(id.toString());
     this.counter--;
   }

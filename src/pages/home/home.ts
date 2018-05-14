@@ -18,7 +18,7 @@ export class HomePage {
     public Database: Database
   ) { }
 
-  goAddElement() {
+  public goAddElement() {
     console.warn("hello");
     this.nav.push(AjouterPage);
   }
