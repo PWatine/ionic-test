@@ -25,13 +25,28 @@ var Database = /** @class */ (function () {
     };
     Database.prototype.add = function (a, b, c) {
         var person = { firstName: a, lastName: b, age: c, id: this.id };
-        this.storage.set(this.id.toString(), JSON.stringify(person));
+        this.storage.set('persons', JSON.stringify(person));
         this.counter++;
         this.id++;
     };
-    Database.prototype.remove = function (id) {
-        this.storage.remove(id.toString());
-        this.counter--;
+    /*
+    public remove(id) {
+      var a = this.getPersonList();
+      var b = {};
+      for (var v in a) {
+        if (v.id != id.toString()) {
+          b = b + x;
+        }
+  
+      }
+      this.storage.remove('persons'.id.toString());
+      this.counter--;
+    }
+    public getPersonInfo(id: number) {
+      return this.storage.get(id.toString())
+    }*/
+    Database.prototype.getPersonList = function () {
+        return this.storage.get('persons');
     };
     Database = __decorate([
         Injectable(),

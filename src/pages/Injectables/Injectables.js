@@ -8,31 +8,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-var person = /** @class */ (function () {
-    function person() {
-        this.age = 0;
-        this.firstName = "";
-        this.lastName = "";
-        this.age = 0;
-        this.id = 0;
+var Table = /** @class */ (function () {
+    function Table(validInputs, modify) {
+        this.validInputs = validInputs;
+        this.modify = modify;
+        modify = false;
+        validInputs = false;
     }
-    person.prototype.reset = function () {
-        this.firstName = "";
-        this.lastName = "";
-        this.age = 0;
-        this.id = 0;
+    Table.prototype.changeModify = function () {
+        this.modify = !this.modify;
     };
-    person.prototype.initialize = function (a, b, c, d) {
-        this.firstName = a;
-        this.lastName = b;
-        this.age = c;
-        this.id = d;
+    Table.prototype.submitInputs = function () {
+        this.validInputs = !this.validInputs;
     };
-    person = __decorate([
+    Table = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [])
-    ], person);
-    return person;
+        __metadata("design:paramtypes", [Boolean, Boolean])
+    ], Table);
+    return Table;
 }());
-export { person };
-//# sourceMappingURL=person.js.map
+export { Table };
+//# sourceMappingURL=Injectables.js.map

@@ -47,6 +47,9 @@ export class AjouterPage {
     var a = this.toast.create(this.options).present();
         
   }
+  
+
 }
+
 
 

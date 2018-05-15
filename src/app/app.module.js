@@ -10,11 +10,13 @@ import { IonicApp, IonicModule, IonicErrorHandler, } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AjouterPage } from '../pages/ajouter/ajouter';
 import { Database } from '../providers/database/database';
 import { HomePage } from '../pages/home/home';
+import { person } from '../Blacklist/person';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -26,6 +28,7 @@ var AppModule = /** @class */ (function () {
                 HomePage,
             ],
             imports: [
+                HttpModule,
                 BrowserModule,
                 MatButtonModule,
                 MatCheckboxModule,
@@ -54,7 +57,8 @@ var AppModule = /** @class */ (function () {
                 StatusBar,
                 SplashScreen,
                 { provide: ErrorHandler, useClass: IonicErrorHandler },
-                Database
+                Database,
+                person
             ]
         })
     ], AppModule);

@@ -4,12 +4,14 @@
     "\\resources",
     "\\resources\\android",
     "\\src",
-    "\\src\\app",
+    "\\src\\assets\\imgs",
+    "\\src\\Blacklist",
     "\\src\\pages",
     "\\src\\pages\\ajouter",
-    "\\src\\pages\\home",
-    "\\src\\providers",
-    "\\src\\providers\\database"
+    "\\src\\pages\\Injectables",
+    "\\src\\pages\\tabs",
+    "\\src\\providers"
   ],
+  "SelectedNode": "\\src\\pages\\ajouter\\ajouter.js",
   "PreviewInSolutionExplorer": false
 }

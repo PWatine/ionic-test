@@ -1,11 +1,11 @@
-import { NgModule, ErrorHandler, Injectable } from '@angular/core';
+import { Component, NgModule, ErrorHandler, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, App,} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule,MatCardModule, MatIconModule } from '@angular/material';
 
-
+import { HttpModule } from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,10 +19,12 @@ import { person } from '../Blacklist/person';
     MyApp,
     AjouterPage,
     HomePage,
+    
 
   ],
 
   imports: [
+    HttpModule,
     BrowserModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -35,6 +37,7 @@ import { person } from '../Blacklist/person';
   ],
   bootstrap: [IonicApp],
   exports: [
+   
     MatButtonModule, 
     MatCheckboxModule,
     MatCardModule,
@@ -53,7 +56,9 @@ import { person } from '../Blacklist/person';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Database
+    Database,
+    person
+
   ]
 })
 export class AppModule {}

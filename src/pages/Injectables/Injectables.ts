@@ -11,10 +11,10 @@ export class Table {
     
   ) {modify=false; validInputs=false}
 
-  changeMode() {
+  public changeModify() {
     this.modify = !this.modify;
   }
-  submitInputs() {
+  public submitInputs() {
     this.validInputs = !this.validInputs;
   }
 }

@@ -11,14 +11,27 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AjouterPage } from '../ajouter/ajouter';
 import { Database } from '../../providers/database/database';
+import { Table } from '../Injectables/Injectables';
 var HomePage = /** @class */ (function () {
-    function HomePage(nav, Database) {
+    function HomePage(nav, data, persons, t) {
         this.nav = nav;
-        this.Database = Database;
+        this.data = data;
+        this.persons = persons;
+        this.t = t;
     }
+    HomePage.prototype.modify = function () {
+        return this.t.modify;
+    };
+    HomePage.prototype.changeModify = function () {
+        window.alert('hi');
+        this.t.changeModify();
+    };
     HomePage.prototype.goAddElement = function () {
-        console.warn("hello");
         this.nav.push(AjouterPage);
+    };
+    HomePage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        return this.data.getPersonList().then(function (data) { return _this.persons = data; });
     };
     HomePage = __decorate([
         Component({
@@ -26,7 +39,7 @@ var HomePage = /** @class */ (function () {
             templateUrl: 'home.html'
         }),
         __metadata("design:paramtypes", [NavController,
-            Database])
+            Database, Object, Table])
     ], HomePage);
     return HomePage;
 }());

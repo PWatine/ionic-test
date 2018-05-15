@@ -1,5 +1,6 @@
 import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
+import { person } from '../../Blacklist/person';
 
 
 @Injectable()
@@ -21,12 +22,27 @@ export class Database {
   }
   public add(a, b, c) {
     let person = { firstName: a, lastName: b, age: c, id: this.id };
-    this.storage.set(this.id.toString(), JSON.stringify(person))
+    this.storage.set('persons', JSON.stringify(person))
     this.counter++;
     this.id++;
   }
-  public  remove(id) {
-    this.storage.remove(id.toString());
+  /*
+  public remove(id) {
+    var a = this.getPersonList();
+    var b = {};
+    for (var v in a) {
+      if (v.id != id.toString()) {
+        b = b + x;
+      }
+
+    }
+    this.storage.remove('persons'.id.toString());
     this.counter--;
+  }
+  public getPersonInfo(id: number) {
+    return this.storage.get(id.toString())
+  }*/
+  public getPersonList() {
+    return this.storage.get('persons')
   }
 }
