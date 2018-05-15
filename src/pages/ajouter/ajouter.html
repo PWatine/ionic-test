@@ -5,46 +5,50 @@
 </ion-header>
 
 <ion-content padding>
-
+  
   <form (ngSubmit)="condemn(creation.firstName, creation.lastName, creation.age)">
 
     <ion-item>
       <ion-label>First name:</ion-label>
-      <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" placeHolder ></ion-input>
+      <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" [ngModelOptions]="{standalone: true}"></ion-input>
+
+    </ion-item>
+    
+    {{getf()}}
+    <p color="red" *ngIf="isEmpty(getf())">
+      First name is <strong>required</strong>
+    </p>
+    <p color="red" *ngIf="isRobot(getf())">
+      Unless it is a robot, I doubt that the person's name contains a letter.
+    </p>
+    <!--
+    <ion-item>
+      <ion-label>Last name:</ion-label>
+      <ion-input matInput color="primary" type="text"  floating [(ngModel)]="" name="lastName"></ion-input>
       <p>Enter a valid name, no numbers.</p>
-      {{geti()}}
       <p color="red" *ngIf="true">
-        First name is <strong>required</strong>
+        Last name is <strong>required</strong>
       </p>
     </ion-item>
-    <!--
-      <ion-item>
-        <ion-label>Last name:</ion-label>
-        <ion-input matInput color="primary" type="text"  floating [(ngModel)]="" name="lastName"></ion-input>
-        <p>Enter a valid name, no numbers.</p>
-        <p color="red" *ngIf="true">
-          Last name is <strong>required</strong>
-        </p>
-      </ion-item>
 
-      <ion-item>
-        <ion-label>Age:</ion-label>
-        <ion-input matInput name="age" color="primary" type="number" floating [(ngModel)]="0"></ion-input>
-        <p>Enter a valid age.</p>
-        <p color="red" *ngIf="person.age.$dirty && validNumber(person.age)">
-          I don't believe you... Please enter that person's real age.
-        </p>
-        <p color="red" *ngIf="true">
-          Age is <strong>required</strong>
-        </p>
-      </ion-item>
-      -->
+    <ion-item>
+      <ion-label>Age:</ion-label>
+      <ion-input matInput name="age" color="primary" type="number" floating [(ngModel)]="0"></ion-input>
+      <p>Enter a valid age.</p>
+      <p color="red" *ngIf="person.age.$dirty && validNumber(person.age)">
+        I don't believe you... Please enter that person's real age.
+      </p>
+      <p color="red" *ngIf="true">
+        Age is <strong>required</strong>
+      </p>
+    </ion-item>
+    -->
     <button ion-button type="submit" block>Add to the list! >:D</button>
     <!--
-        <input mat-button  color="primary" style="color:mediumorchid" value="Add him! >:D" type:"submit" />
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment"></textarea>
-        </mat-form-field>
-  -->
-  </form>
+  <input mat-button  color="primary" style="color:mediumorchid" value="Add him! >:D" type:"submit" />
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Leave a comment"></textarea>
+  </mat-form-field>-->
+
+  </form> 
 </ion-content>

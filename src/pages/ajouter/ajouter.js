@@ -23,10 +23,11 @@ var AjouterPage = /** @class */ (function () {
     function AjouterPage(toast, nav) {
         this.toast = toast;
         this.nav = nav;
-        this.tempperson.firstName = "";
-        this.tempperson.lastName = "";
-        this.tempperson.age = -1;
-        this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, };
+        this.firstName = "";
+        this.lastName = "";
+        this.age = -1;
+        this.validAge = false;
+        this.notRobot = false;
     }
     AjouterPage.prototype.validNumber = function (a) {
         return (a.isNumber && a < 120 && a >= 0);
@@ -41,16 +42,35 @@ var AjouterPage = /** @class */ (function () {
     };
     AjouterPage.prototype.condemn = function (x, y, z) {
         this.db.add(x, y, z);
+        this.options = { message: this.firstName + ' ' + this.lastName + ' has been added.', duration: 2000, };
         this.notify();
     };
     AjouterPage.prototype.notify = function () {
         var a = this.toast.create(this.options).present();
     };
     AjouterPage.prototype.changeFirstName = function (a) {
-        this.tempperson.firstName = a;
+        this.firstName = a;
     };
-    AjouterPage.prototype.geti = function () {
-        return this.tempperson.firstName;
+    AjouterPage.prototype.changeLastName = function (a) {
+        this.lastName = a;
+    };
+    AjouterPage.prototype.changeAge = function (a) {
+        this.age = a;
+    };
+    AjouterPage.prototype.getf = function () {
+        return this.firstName;
+    };
+    AjouterPage.prototype.getl = function () {
+        return this.lastName;
+    };
+    AjouterPage.prototype.geta = function () {
+        return this.age;
+    };
+    AjouterPage.prototype.isEmpty = function (input) {
+        return (input == '0' || input == '');
+    };
+    AjouterPage.prototype.isRobot = function (input) {
+        return /\d/.test(input);
     };
     AjouterPage = __decorate([
         Component({

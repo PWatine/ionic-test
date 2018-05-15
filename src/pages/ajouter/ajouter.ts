@@ -22,15 +22,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   
 })
 export class AjouterPage {
-  tempperson : person;
+  firstName: string;
+  lastName: string;
+  age: number;
+  notRobot: boolean;
+  validAge: boolean;
   options: ToastOptions;
   public db: Database;
   constructor(private toast: ToastController, public nav: NavController) {
-    this.tempperson.firstName = "";
-    this.tempperson.lastName = "";
-    this.tempperson.age = -1;
-    this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, }
-    
+    this.firstName = "";
+    this.lastName = "";
+    this.age = -1;
+    this.validAge = false;
+    this.notRobot = false;
+   
 
   }
   public validNumber(a: any){
@@ -46,7 +51,8 @@ export class AjouterPage {
     return true;
   }
   public condemn(x: string, y:string, z:number) {
-    this.db.add(x,y,z);
+    this.db.add(x, y, z);
+    this.options = { message: this.firstName + ' ' + this.lastName + ' has been added.', duration: 2000, }
     this.notify();
   }
   public notify() {
@@ -55,10 +61,29 @@ export class AjouterPage {
   }
 
   public changeFirstName(a: string) {
-    this.tempperson.firstName = a;
+    this.firstName = a;
   }
-  public geti() {
-    return this.tempperson.firstName;
+  public changeLastName(a: string) {
+    this.lastName = a;
+  }
+  public changeAge(a: number) {
+    this.age = a;
+  }
+  public getf() {
+    return this.firstName;
+  }
+  public getl() {
+    return this.lastName;
+  }
+  public geta() {
+    return this.age;
+  }
+
+  public isEmpty(input) {
+    return (input == '0' || input == '');
+  }
+  public isRobot(input) {
+    return /\d/.test(input);
   }
 
 }
