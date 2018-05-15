@@ -26,10 +26,11 @@ export class AjouterPage {
   options: ToastOptions;
   public db: Database;
   constructor(private toast: ToastController, public nav: NavController) {
-    this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, }
     this.tempperson.firstName = "";
     this.tempperson.lastName = "";
     this.tempperson.age = -1;
+    this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, }
+    
 
   }
   public validNumber(a: any){
@@ -52,7 +53,13 @@ export class AjouterPage {
     var a = this.toast.create(this.options).present();
         
   }
-  
+
+  public changeFirstName(a: string) {
+    this.tempperson.firstName = a;
+  }
+  public geti() {
+    return this.tempperson.firstName;
+  }
 
 }
 

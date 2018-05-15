@@ -13,6 +13,7 @@
 
 
   {{getSearch()}}{{modify()}}
+  <br /><br/>
   <span *ngIf="isEmpty()">
     <mat-card>
       <mat-card-title>
@@ -32,7 +33,7 @@
     <ion-row *ngFor="let item of persons">
       <ion-col col-5 *ngIf="modify()"><input type="text" name="FirstName" [(ngModel)]="person.firstName"></ion-col>
          <ion-col col-5 *ngIf="!modify()"><button ion-button color="danger" (click)="remove(person.id)"><ion-icon ios="ios-backspace" md="md-backspace"></ion-icon></button>
-             {{person.firstName}}</ion-col>
+             {{person.firstName}}</ion-col>-->
       <ion-col col-5 *ngIf="modify()"><input type="text" name="FirstName" [(ngModel)]="person.lastName"></ion-col>
       <ion-col col-5 *ngIf="!modify()">{{person.lastName}}</ion-col>
     </ion-row>

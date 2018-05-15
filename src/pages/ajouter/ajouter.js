@@ -23,10 +23,10 @@ var AjouterPage = /** @class */ (function () {
     function AjouterPage(toast, nav) {
         this.toast = toast;
         this.nav = nav;
-        this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, };
         this.tempperson.firstName = "";
         this.tempperson.lastName = "";
         this.tempperson.age = -1;
+        this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, };
     }
     AjouterPage.prototype.validNumber = function (a) {
         return (a.isNumber && a < 120 && a >= 0);
@@ -45,6 +45,12 @@ var AjouterPage = /** @class */ (function () {
     };
     AjouterPage.prototype.notify = function () {
         var a = this.toast.create(this.options).present();
+    };
+    AjouterPage.prototype.changeFirstName = function (a) {
+        this.tempperson.firstName = a;
+    };
+    AjouterPage.prototype.geti = function () {
+        return this.tempperson.firstName;
     };
     AjouterPage = __decorate([
         Component({

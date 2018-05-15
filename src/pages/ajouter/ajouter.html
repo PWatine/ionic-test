@@ -10,9 +10,9 @@
 
     <ion-item>
       <ion-label>First name:</ion-label>
-      <ion-input matInput color="primary" type="text" floating [(ngModel)]="this.tempperson.firstName" value="" ></ion-input>
+      <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" placeHolder ></ion-input>
       <p>Enter a valid name, no numbers.</p>
-
+      {{geti()}}
       <p color="red" *ngIf="true">
         First name is <strong>required</strong>
       </p>
