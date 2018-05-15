@@ -22,10 +22,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   
 })
 export class AjouterPage {
-
+  tempperson : person;
   options: ToastOptions;
-  constructor(private toast: ToastController, public nav: NavController, public tempperson: person, public db: Database) {
-    this.options = { message: tempperson.firstName + ' ' + tempperson.lastName+' has been added.', duration:2000,  }
+  public db: Database;
+  constructor(private toast: ToastController, public nav: NavController) {
+    this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, }
+    this.tempperson.firstName = "";
+    this.tempperson.lastName = "";
+    this.tempperson.age = -1;
+
   }
   public validNumber(a: any){
     return (a.isNumber && a < 120 && a >= 0);

@@ -9,8 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { ToastController, NavController } from 'ionic-angular';
-import { person } from '../../Blacklist/person';
-import { Database } from '../../providers/database/database';
 var MyErrorStateMatcher = /** @class */ (function () {
     function MyErrorStateMatcher() {
     }
@@ -22,12 +20,13 @@ var MyErrorStateMatcher = /** @class */ (function () {
 }());
 export { MyErrorStateMatcher };
 var AjouterPage = /** @class */ (function () {
-    function AjouterPage(toast, nav, tempperson, db) {
+    function AjouterPage(toast, nav) {
         this.toast = toast;
         this.nav = nav;
-        this.tempperson = tempperson;
-        this.db = db;
-        this.options = { message: tempperson.firstName + ' ' + tempperson.lastName + ' has been added.', duration: 2000, };
+        this.options = { message: this.tempperson.firstName + ' ' + this.tempperson.lastName + ' has been added.', duration: 2000, };
+        this.tempperson.firstName = "";
+        this.tempperson.lastName = "";
+        this.tempperson.age = -1;
     }
     AjouterPage.prototype.validNumber = function (a) {
         return (a.isNumber && a < 120 && a >= 0);
@@ -52,7 +51,7 @@ var AjouterPage = /** @class */ (function () {
             selector: 'page-ajouter',
             templateUrl: 'ajouter.html'
         }),
-        __metadata("design:paramtypes", [ToastController, NavController, person, Database])
+        __metadata("design:paramtypes", [ToastController, NavController])
     ], AjouterPage);
     return AjouterPage;
 }());

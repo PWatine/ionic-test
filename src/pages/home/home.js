@@ -19,6 +19,7 @@ var HomePage = /** @class */ (function () {
         this.data = data;
         this.persons = persons;
         this.table = new Table(true, false);
+        this.search = "";
     }
     HomePage.prototype.modify = function () {
         return this.table.modify;
@@ -38,6 +39,19 @@ var HomePage = /** @class */ (function () {
             return true;
         else
             return this.data.isEmpty();
+    };
+    HomePage.prototype.remove = function (id) {
+        this.data.remove(id);
+    };
+    HomePage.prototype.setSearch = function (a) {
+        this.search = a;
+        this.disableModify();
+    };
+    HomePage.prototype.getSearch = function () {
+        return this.search;
+    };
+    HomePage.prototype.disableModify = function () {
+        this.table.modify = false;
     };
     HomePage = __decorate([
         Component({

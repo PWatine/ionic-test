@@ -14,6 +14,7 @@ import { isUndefined } from 'ionic-angular/util/util';
 })
 export class HomePage {
   public table: Table;
+  public search: string;
 
   constructor(
     private nav: NavController,
@@ -21,7 +22,7 @@ export class HomePage {
     public persons: Database,
   ) {
     this.table = new Table(true, false);
- 
+    this.search = "";
   }
   public modify() {
     return this.table.modify;
@@ -41,5 +42,18 @@ export class HomePage {
       return true;
     else
      return this.data.isEmpty();
+  }
+  public remove(id: number) {
+    this.data.remove(id);
+  }
+  public setSearch(a: string) {
+    this.search = a;
+    this.disableModify();
+  }
+  public getSearch() {
+    return this.search;
+  }
+  public disableModify() {
+    this.table.modify = false;
   }
 }

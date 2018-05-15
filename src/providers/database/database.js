@@ -29,22 +29,12 @@ var Database = /** @class */ (function () {
         this.counter++;
         this.id++;
     };
-    /*
-    public remove(id) {
-      var a = this.getPersonList();
-      var b = {};
-      for (var v in a) {
-        if (v.id != id.toString()) {
-          b = b + x;
-        }
-  
-      }
-      this.storage.remove('persons'.id.toString());
-      this.counter--;
-    }
-    public getPersonInfo(id: number) {
-      return this.storage.get(id.toString())
-    }*/
+    Database.prototype.remove = function (id) {
+        this.remove(id.toString());
+    };
+    Database.prototype.getPersonInfo = function (id) {
+        return this.storage.get(id.toString());
+    };
     Database.prototype.getPersonList = function () {
         return this.storage.get('persons');
     };
