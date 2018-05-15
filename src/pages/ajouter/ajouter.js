@@ -46,7 +46,7 @@ var AjouterPage = /** @class */ (function () {
         this.notify();
     };
     AjouterPage.prototype.notify = function () {
-        var a = this.toast.create(this.options).present();
+        this.toast.create(this.options).present();
     };
     AjouterPage.prototype.changeFirstName = function (a) {
         this.firstName = a;

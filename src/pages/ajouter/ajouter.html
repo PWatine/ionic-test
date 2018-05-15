@@ -11,9 +11,8 @@
     <ion-item>
       <ion-label>First name:</ion-label>
       <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" [ngModelOptions]="{standalone: true}"></ion-input>
-
     </ion-item>
-    
+
     {{getf()}}
     <p color="red" *ngIf="isEmpty(getf())">
       First name is <strong>required</strong>
@@ -22,6 +21,13 @@
       Unless it is a robot, I doubt that the person's name contains a letter.
     </p>
     <!--
+      <ion-item>
+        <ion-label>First name:</ion-label>
+        <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" [ngModelOptions]="{standalone: true}"></ion-input>
+
+      </ion-item>
+
+
     <ion-item>
       <ion-label>Last name:</ion-label>
       <ion-input matInput color="primary" type="text"  floating [(ngModel)]="" name="lastName"></ion-input>

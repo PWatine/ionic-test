@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { ToastController,ToastOptions, NavController, NavParams } from 'ionic-angular';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController,ToastOptions, NavController } from 'ionic-angular';
+import { FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { person } from '../../Blacklist/person';
 import { Database } from '../../providers/database/database';
 
 
@@ -56,7 +52,7 @@ export class AjouterPage {
     this.notify();
   }
   public notify() {
-    var a = this.toast.create(this.options).present();
+    this.toast.create(this.options).present();
         
   }
 
