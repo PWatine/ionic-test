@@ -12,19 +12,19 @@ import { NavController } from 'ionic-angular';
 import { AjouterPage } from '../ajouter/ajouter';
 import { Database } from '../../providers/database/database';
 import { Table } from '../Injectables/Injectables';
+import { isUndefined } from 'ionic-angular/util/util';
 var HomePage = /** @class */ (function () {
-    function HomePage(nav, data, persons, t) {
+    function HomePage(nav, data, persons) {
         this.nav = nav;
         this.data = data;
         this.persons = persons;
-        this.t = t;
+        this.table = new Table(true, false);
     }
     HomePage.prototype.modify = function () {
-        return this.t.modify;
+        return this.table.modify;
     };
     HomePage.prototype.changeModify = function () {
-        window.alert('hi');
-        this.t.changeModify();
+        this.table.changeModify();
     };
     HomePage.prototype.goAddElement = function () {
         this.nav.push(AjouterPage);
@@ -33,13 +33,20 @@ var HomePage = /** @class */ (function () {
         var _this = this;
         return this.data.getPersonList().then(function (data) { return _this.persons = data; });
     };
+    HomePage.prototype.isEmpty = function () {
+        if (isUndefined(this.data))
+            return true;
+        else
+            return this.data.isEmpty();
+    };
     HomePage = __decorate([
         Component({
             selector: 'page-home',
             templateUrl: 'home.html'
         }),
         __metadata("design:paramtypes", [NavController,
-            Database, Object, Table])
+            Database,
+            Database])
     ], HomePage);
     return HomePage;
 }());

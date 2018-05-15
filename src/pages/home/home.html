@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-toolbar *ngIf="Database.isEmpty()"><button ion-button full (click)="changeModify()"></button></ion-toolbar>
-  <span *ngIf="Database.isEmpty()">
+  <ion-toolbar *ngIf="isEmpty()"><button ion-button full (click)="changeModify()"></button></ion-toolbar>
+  <span *ngIf="isEmpty()">
     <mat-card>
       <mat-card-title>
         La liste noire est vide.
       </mat-card-title>
     </mat-card>
   </span>
-  <span *ngIf="!Database.isEmpty()">
+  <span *ngIf="!isEmpty()">
     <ion-row>
       <ion-col col-5>Nom</ion-col>
       <ion-col col-5>Prénom</ion-col>

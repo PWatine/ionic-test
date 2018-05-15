@@ -4,9 +4,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, } from 'ionic-angular';
+import { IonicApp, IonicModule, } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule } from '@angular/material';
@@ -25,7 +25,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 MyApp,
                 AjouterPage,
-                HomePage,
+                HomePage
             ],
             imports: [
                 HttpModule,
@@ -51,14 +51,13 @@ var AppModule = /** @class */ (function () {
             entryComponents: [
                 MyApp,
                 HomePage,
-                AjouterPage,
+                AjouterPage
             ],
             providers: [
+                Database,
+                person,
                 StatusBar,
                 SplashScreen,
-                { provide: ErrorHandler, useClass: IonicErrorHandler },
-                Database,
-                person
             ]
         })
     ], AppModule);
