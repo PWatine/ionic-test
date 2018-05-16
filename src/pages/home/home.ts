@@ -6,7 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Table } from '../Injectables/Injectables';
-import { isUndefined } from 'ionic-angular/util/util';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'page-home',
@@ -15,14 +16,16 @@ import { isUndefined } from 'ionic-angular/util/util';
 export class HomePage {
   public table: Table;
   public search: string;
-
+  public targets: any;
   constructor(
     private nav: NavController,
     public data: Database,
-    public persons: Database,
   ) {
     this.table = new Table(true, false);
     this.search = "";
+    this.data.get('targets').then((data) => {
+      this.targets=data
+    });
   }
   public modify() {
     return this.table.modify;
@@ -35,10 +38,11 @@ export class HomePage {
     this.nav.push(AjouterPage);
   }
   ionViewDidEnter() {
-    return this.data.getPersonList().then(data => this.persons = data);
+    return this.data.get('targets').then((targets) => this.targets = targets);
   }
   public isEmpty() {
-    if (isUndefined(this.data))
+
+    if (this.data==null)
       return true;
     else
      return this.data.isEmpty();
@@ -56,4 +60,5 @@ export class HomePage {
   public disableModify() {
     this.table.modify = false;
   }
+ 
 }

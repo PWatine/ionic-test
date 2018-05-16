@@ -24,13 +24,18 @@ export class AjouterPage {
   notRobot: boolean;
   validAge: boolean;
   options: ToastOptions;
-  public db: Database;
-  constructor(private toast: ToastController, public nav: NavController) {
+  element: any;
+  
+  list: any;
+  constructor( private toast: ToastController, public nav: NavController, public db: Database) {
 
     this.age = "";
     this.validAge = false;
     this.notRobot = false;
-   
+    this.db.get('targets').then((data) => {
+      this.list = data;
+      
+    });
 
   }
   public validNumber(a: any){
@@ -45,15 +50,19 @@ export class AjouterPage {
     
     return true;
   }
-  public condemn(x: string, y:string, z:number) {
-    this.db.add(x, y, z);
-    this.options = { message: this.firstName + ' ' + this.lastName + ' has been added.', duration: 2000, }
-    this.notify();
+  public condemn(x: string, y: string, z: string) {
+    if (this.isRobot(x) || this.isEmpty2(x) || this.isRobot(y) || this.isEmpty2(y) || this.notSerious(z) || this.incorrectAge(z)) {
+      this.options = { message: 'Vérifiez vos réponses', duration: 4000, }
+      this.toast.create(this.options).present();
+    }
+    else {
+      this.db.add(x, y, z);
+      this.options = { message: x + ' ' + y + ' has been added.', duration: 2000, }
+      this.toast.create(this.options).present();
+      this.nav.pop();
+    }
   }
-  public notify() {
-    this.toast.create(this.options).present();
-        
-  }
+ 
 
   public changeFirstName(a: string) {
     this.firstName = a;
@@ -67,32 +76,20 @@ export class AjouterPage {
   public isEmpty2(input) {
     return input == '';
   }
-  public getf() {
-    return this.firstName;
-  }
-  public getl() {
-    return this.lastName;
-  }
-  public geta() {
-    return this.age;
-  }
   
-  public isEmpty(input) {
-    return this.notNull(input);
-  }
+  
+  
   public isRobot(input) {
     return /\d/.test(input);
   }
-  public notNull(input) {
-    return !(input == null);
-  }
   public incorrectAge(input) {
-    return ((input < 0 || input > 113) && this.notNull(input));
+    return ((input < 0 || input > 113) && !(input == null));
 
   }
   public notSerious(input) {
     return /\D/.test(input);
   }
+  
  
 }
 

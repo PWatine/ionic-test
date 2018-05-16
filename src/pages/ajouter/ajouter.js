@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { ToastController, NavController } from 'ionic-angular';
+import { Database } from '../../providers/database/database';
 var MyErrorStateMatcher = /** @class */ (function () {
     function MyErrorStateMatcher() {
     }
@@ -20,12 +21,17 @@ var MyErrorStateMatcher = /** @class */ (function () {
 }());
 export { MyErrorStateMatcher };
 var AjouterPage = /** @class */ (function () {
-    function AjouterPage(toast, nav) {
+    function AjouterPage(toast, nav, db) {
+        var _this = this;
         this.toast = toast;
         this.nav = nav;
+        this.db = db;
         this.age = "";
         this.validAge = false;
         this.notRobot = false;
+        this.db.get('targets').then(function (data) {
+            _this.list = data;
+        });
     }
     AjouterPage.prototype.validNumber = function (a) {
         return (a.isNumber && a < 120 && a >= 0);
@@ -39,12 +45,16 @@ var AjouterPage = /** @class */ (function () {
         return true;
     };
     AjouterPage.prototype.condemn = function (x, y, z) {
-        this.db.add(x, y, z);
-        this.options = { message: this.firstName + ' ' + this.lastName + ' has been added.', duration: 2000, };
-        this.notify();
-    };
-    AjouterPage.prototype.notify = function () {
-        this.toast.create(this.options).present();
+        if (this.isRobot(x) || this.isEmpty2(x) || this.isRobot(y) || this.isEmpty2(y) || this.notSerious(z) || this.incorrectAge(z)) {
+            this.options = { message: 'Vérifiez vos réponses', duration: 4000, };
+            this.toast.create(this.options).present();
+        }
+        else {
+            this.db.add(x, y, z);
+            this.options = { message: x + ' ' + y + ' has been added.', duration: 2000, };
+            this.toast.create(this.options).present();
+            this.nav.pop();
+        }
     };
     AjouterPage.prototype.changeFirstName = function (a) {
         this.firstName = a;
@@ -58,26 +68,11 @@ var AjouterPage = /** @class */ (function () {
     AjouterPage.prototype.isEmpty2 = function (input) {
         return input == '';
     };
-    AjouterPage.prototype.getf = function () {
-        return this.firstName;
-    };
-    AjouterPage.prototype.getl = function () {
-        return this.lastName;
-    };
-    AjouterPage.prototype.geta = function () {
-        return this.age;
-    };
-    AjouterPage.prototype.isEmpty = function (input) {
-        return this.notNull(input);
-    };
     AjouterPage.prototype.isRobot = function (input) {
         return /\d/.test(input);
     };
-    AjouterPage.prototype.notNull = function (input) {
-        return !(input == null);
-    };
     AjouterPage.prototype.incorrectAge = function (input) {
-        return ((input < 0 || input > 113) && this.notNull(input));
+        return ((input < 0 || input > 113) && !(input == null));
     };
     AjouterPage.prototype.notSerious = function (input) {
         return /\D/.test(input);
@@ -87,7 +82,7 @@ var AjouterPage = /** @class */ (function () {
             selector: 'page-ajouter',
             templateUrl: 'ajouter.html'
         }),
-        __metadata("design:paramtypes", [ToastController, NavController])
+        __metadata("design:paramtypes", [ToastController, NavController, Database])
     ], AjouterPage);
     return AjouterPage;
 }());

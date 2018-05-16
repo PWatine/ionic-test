@@ -12,14 +12,16 @@ import { NavController } from 'ionic-angular';
 import { AjouterPage } from '../ajouter/ajouter';
 import { Database } from '../../providers/database/database';
 import { Table } from '../Injectables/Injectables';
-import { isUndefined } from 'ionic-angular/util/util';
 var HomePage = /** @class */ (function () {
-    function HomePage(nav, data, persons) {
+    function HomePage(nav, data) {
+        var _this = this;
         this.nav = nav;
         this.data = data;
-        this.persons = persons;
         this.table = new Table(true, false);
         this.search = "";
+        this.data.get('targets').then(function (data) {
+            _this.targets = data;
+        });
     }
     HomePage.prototype.modify = function () {
         return this.table.modify;
@@ -32,10 +34,10 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.ionViewDidEnter = function () {
         var _this = this;
-        return this.data.getPersonList().then(function (data) { return _this.persons = data; });
+        return this.data.get('targets').then(function (targets) { return _this.targets = targets; });
     };
     HomePage.prototype.isEmpty = function () {
-        if (isUndefined(this.data))
+        if (this.data == null)
             return true;
         else
             return this.data.isEmpty();
@@ -59,7 +61,6 @@ var HomePage = /** @class */ (function () {
             templateUrl: 'home.html'
         }),
         __metadata("design:paramtypes", [NavController,
-            Database,
             Database])
     ], HomePage);
     return HomePage;

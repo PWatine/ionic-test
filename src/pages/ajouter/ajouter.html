@@ -6,18 +6,18 @@
 
 <ion-content padding>
   
-  <form (ngSubmit)="condemn(creation.firstName, creation.lastName, creation.age)">
+  <form (ngSubmit)="condemn(firstName,lastName,age)">
 
     <ion-item>
       <ion-label>Prénom:</ion-label>
       <ion-input matInput type="text" color="primary" floating [(ngModel)]="firstName" (ngModelChange)="changeFirstName(firstName)" [ngModelOptions]="{standalone: true}"></ion-input>
     </ion-item>
 
-    {{getf()}}
-    <mat-error style="color:red" *ngIf="isEmpty2(getf())">
+   
+    <mat-error style="color:red" *ngIf="isEmpty2(firstName)">
       Le prénom est <strong>nécéssaire</strong>!
     </mat-error>
-    <mat-error style="color:red" *ngIf="isRobot(getf())">
+    <mat-error style="color:red" *ngIf="isRobot(firstName)">
       À part si c'est un robot, je ne crois pas que son nom contient un nombre.
     </mat-error>
     <br />
@@ -27,11 +27,11 @@
       <ion-input matInput type="text" color="primary" floating [(ngModel)]="lastName" (ngModelChange)="changeLastName(lastName)" [ngModelOptions]="{standalone: true}"></ion-input>
 
     </ion-item>
-    {{getl()}}
-    <mat-error style="color:red" *ngIf="isEmpty2(getl())">
+   
+    <mat-error style="color:red" *ngIf="isEmpty2(lastName)">
       Le nom de famille est <strong>nécéssaire</strong>!
     </mat-error>
-    <mat-error style="color:red" *ngIf="isRobot(getl())">
+    <mat-error style="color:red" *ngIf="isRobot(lastName)">
       À part si c'est un robot, je ne crois pas que son nom contient un nombre.
     </mat-error>
     <br />
@@ -40,12 +40,12 @@
       <ion-input matInput type="text" color="primary" floating [(ngModel)]="age" (ngModelChange)="changeAge(age)" [ngModelOptions]="{standalone: true}"></ion-input>
 
     </ion-item>
-    {{geta()}}
-    <mat-error style="color:red" *ngIf="incorrectAge(geta())">
+ 
+    <mat-error style="color:red" *ngIf="incorrectAge(age)">
       Je ne vous crois pas...
     </mat-error>
 
-    <mat-error style="color:red" *ngIf="notSerious(geta())">
+    <mat-error style="color:red" *ngIf="notSerious(age)">
       Prenez mes questions au sérieux svp...
     </mat-error>
     <br />

@@ -14,6 +14,7 @@ var Database = /** @class */ (function () {
         this.storage = storage;
         this.counter = 0;
         this.id = 0;
+        this.storage.set('targets', []);
     }
     Database.prototype.isEmpty = function () {
         if (this.counter == 0) {
@@ -24,19 +25,30 @@ var Database = /** @class */ (function () {
         }
     };
     Database.prototype.add = function (a, b, c) {
+        var _this = this;
         var person = { firstName: a, lastName: b, age: c, id: this.id };
-        this.storage.set('persons', JSON.stringify(person));
-        this.counter++;
         this.id++;
+        this.storage.get('targets').then(function (data) {
+            //if (data != null) {
+            data.push(person);
+            _this.storage.set('targets', data);
+            /*}
+            else {
+              let array = [];
+              array.push(person);
+              this.storage.set('targets', data)
+            }*/
+        });
+        this.counter++;
     };
     Database.prototype.remove = function (id) {
-        this.remove(id.toString());
+        var _this = this;
+        this.storage.get('targets').then(function (data) { _this.targets = data; });
+        this.targets = this.targets.filter(function (targets) { return this.targets.id !== id; });
+        this.storage.push(this.targets);
     };
-    Database.prototype.getPersonInfo = function (id) {
-        return this.storage.get(id.toString());
-    };
-    Database.prototype.getPersonList = function () {
-        return this.storage.get('persons');
+    Database.prototype.get = function (key) {
+        return this.storage.get(key);
     };
     Database = __decorate([
         Injectable(),

@@ -7,10 +7,11 @@ import { person } from '../../Blacklist/person';
 export class Database {
   counter: number;
   id: number;
+  targets: any;
   constructor(private storage: Storage) {
-    this.counter=0;
+    this.counter = 0;
     this.id = 0;
-    
+    this.storage.set('targets', []);
   }
     
   public isEmpty() {
@@ -23,19 +24,30 @@ export class Database {
   }
   public add(a, b, c) {
     let person = { firstName: a, lastName: b, age: c, id: this.id };
-    this.storage.set('persons', JSON.stringify(person))
-    this.counter++;
     this.id++;
+    this.storage.get('targets').then((data) => {
+      //if (data != null) {
+        data.push(person);
+        this.storage.set('targets', data)
+      /*}
+      else {
+        let array = [];
+        array.push(person);
+        this.storage.set('targets', data)
+      }*/
+    });
+    this.counter++;
+    
   }
   
   public remove(id) {
-    this.remove(id.toString())
+    this.storage.get('targets').then((data) => { this.targets = data });
+    this.targets = this.targets.filter(function (targets) { return this.targets.id !== id });
+    this.storage.push(this.targets);
  
   }
-  public getPersonInfo(id: number) {
-    return this.storage.get(id.toString())
+  public get(key) {
+    return this.storage.get(key);
   }
-  public getPersonList() {
-    return this.storage.get('persons')
-  }
+  
 }
