@@ -20,15 +20,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AjouterPage {
   firstName: string;
   lastName: string;
-  age: number;
+  age: string;
   notRobot: boolean;
   validAge: boolean;
   options: ToastOptions;
   public db: Database;
   constructor(private toast: ToastController, public nav: NavController) {
-    this.firstName = "";
-    this.lastName = "";
-    
+
+    this.age = "";
     this.validAge = false;
     this.notRobot = false;
    
@@ -62,8 +61,11 @@ export class AjouterPage {
   public changeLastName(a: string) {
     this.lastName = a;
   }
-  public changeAge(a: number) {
+  public changeAge(a) {
     this.age = a;
+  }
+  public isEmpty2(input) {
+    return input == '';
   }
   public getf() {
     return this.firstName;
@@ -74,9 +76,9 @@ export class AjouterPage {
   public geta() {
     return this.age;
   }
-
+  
   public isEmpty(input) {
-    return (input == '0' || input == '');
+    return this.notNull(input);
   }
   public isRobot(input) {
     return /\d/.test(input);
@@ -87,6 +89,9 @@ export class AjouterPage {
   public incorrectAge(input) {
     return ((input < 0 || input > 113) && this.notNull(input));
 
+  }
+  public notSerious(input) {
+    return /\D/.test(input);
   }
  
 }

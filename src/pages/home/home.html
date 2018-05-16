@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>La petite liste noire de Rached</ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,7 +9,7 @@
     <ion-searchbar [(ngModel)]="search" [showCancelButton]="shouldShowCancel" (ionInput)="setSearch(search)" (ionCancel)="setSearch('')">
     </ion-searchbar>
   </ion-toolbar>
-  <button ion-button icon-start secondary (click)="changeModify()"><ion-icon name="brush"></ion-icon>Modifier</button>
+  <button ion-button icon-start secondary color="dark" (click)="changeModify()"><ion-icon name="brush"></ion-icon>Modifier</button>
 
 
   {{getSearch()}}{{modify()}}
@@ -42,7 +42,7 @@
         <ion-col col-2 *ngIf="!modify()">{{person.age}}</ion-col>
   -->
 
-  <ion-fab right bottom>
-    <button ion-fab style="float: right;" (click)="goAddElement()"><img style="position:center;" src="../../assets/imgs/add.png" /></button>
+  <ion-fab right bottom color="dark">
+    <button ion-fab color="dark" style="float: right;" (click)="goAddElement()"><img style="position:center;" src="../../assets/imgs/add.png" /></button>
   </ion-fab>
 </ion-content>

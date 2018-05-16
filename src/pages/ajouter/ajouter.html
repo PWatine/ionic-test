@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="dark">
       <ion-title>Ajouter un nom</ion-title>
     </ion-navbar>
 </ion-header>
@@ -14,12 +14,12 @@
     </ion-item>
 
     {{getf()}}
-    <p color="red" *ngIf="isEmpty(getf())">
+    <mat-error style="color:red" *ngIf="isEmpty2(getf())">
       Le prénom est <strong>nécéssaire</strong>!
-    </p>
-    <p color="red" *ngIf="isRobot(getf())">
+    </mat-error>
+    <mat-error style="color:red" *ngIf="isRobot(getf())">
       À part si c'est un robot, je ne crois pas que son nom contient un nombre.
-    </p>
+    </mat-error>
     <br />
 
     <ion-item>
@@ -28,25 +28,30 @@
 
     </ion-item>
     {{getl()}}
-    <p color="red" *ngIf="isEmpty(getl())">
+    <mat-error style="color:red" *ngIf="isEmpty2(getl())">
       Le nom de famille est <strong>nécéssaire</strong>!
-    </p>
-    <p color="red" *ngIf="isRobot(getl())">
+    </mat-error>
+    <mat-error style="color:red" *ngIf="isRobot(getl())">
       À part si c'est un robot, je ne crois pas que son nom contient un nombre.
-    </p>
+    </mat-error>
     <br />
     <ion-item>
       <ion-label>Age:</ion-label>
-      <ion-input matInput type="number" color="primary" floating [(ngModel)]="age" (ngModelChange)="changeAge(age)" [ngModelOptions]="{standalone: true}"></ion-input>
+      <ion-input matInput type="text" color="primary" floating [(ngModel)]="age" (ngModelChange)="changeAge(age)" [ngModelOptions]="{standalone: true}"></ion-input>
 
     </ion-item>
     {{geta()}}
-    <p color="red" *ngIf="incorrectAge(geta())">
-      Prenez mes questions au sérieux svp...
-    </p>
+    <mat-error style="color:red" *ngIf="incorrectAge(geta())">
+      Je ne vous crois pas...
+    </mat-error>
 
-  
-    <button ion-button type="submit" block>Add to the list! >:D</button>
+    <mat-error style="color:red" *ngIf="notSerious(geta())">
+      Prenez mes questions au sérieux svp...
+    </mat-error>
+    <br />
+    <br />
+
+    <button mat-button style="left:10%;background-color:black; color:white;font-size:150%" type="submit"><strong>Ajouter à la liste noire! >:D</strong></button>
     <!--
   <input mat-button  color="primary" style="color:mediumorchid" value="Add him! >:D" type:"submit" />
   <mat-form-field class="example-full-width">

@@ -23,8 +23,7 @@ var AjouterPage = /** @class */ (function () {
     function AjouterPage(toast, nav) {
         this.toast = toast;
         this.nav = nav;
-        this.firstName = "";
-        this.lastName = "";
+        this.age = "";
         this.validAge = false;
         this.notRobot = false;
     }
@@ -56,6 +55,9 @@ var AjouterPage = /** @class */ (function () {
     AjouterPage.prototype.changeAge = function (a) {
         this.age = a;
     };
+    AjouterPage.prototype.isEmpty2 = function (input) {
+        return input == '';
+    };
     AjouterPage.prototype.getf = function () {
         return this.firstName;
     };
@@ -66,7 +68,7 @@ var AjouterPage = /** @class */ (function () {
         return this.age;
     };
     AjouterPage.prototype.isEmpty = function (input) {
-        return (input == '0' || input == '');
+        return this.notNull(input);
     };
     AjouterPage.prototype.isRobot = function (input) {
         return /\d/.test(input);
@@ -76,6 +78,9 @@ var AjouterPage = /** @class */ (function () {
     };
     AjouterPage.prototype.incorrectAge = function (input) {
         return ((input < 0 || input > 113) && this.notNull(input));
+    };
+    AjouterPage.prototype.notSerious = function (input) {
+        return /\D/.test(input);
     };
     AjouterPage = __decorate([
         Component({
