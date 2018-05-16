@@ -28,7 +28,7 @@ export class AjouterPage {
   constructor(private toast: ToastController, public nav: NavController) {
     this.firstName = "";
     this.lastName = "";
-    this.age = -1;
+    
     this.validAge = false;
     this.notRobot = false;
    
@@ -81,7 +81,14 @@ export class AjouterPage {
   public isRobot(input) {
     return /\d/.test(input);
   }
+  public notNull(input) {
+    return !(input == null);
+  }
+  public incorrectAge(input) {
+    return ((input < 0 || input > 113) && this.notNull(input));
 
+  }
+ 
 }
 
 

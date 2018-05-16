@@ -25,7 +25,6 @@ var AjouterPage = /** @class */ (function () {
         this.nav = nav;
         this.firstName = "";
         this.lastName = "";
-        this.age = -1;
         this.validAge = false;
         this.notRobot = false;
     }
@@ -71,6 +70,12 @@ var AjouterPage = /** @class */ (function () {
     };
     AjouterPage.prototype.isRobot = function (input) {
         return /\d/.test(input);
+    };
+    AjouterPage.prototype.notNull = function (input) {
+        return !(input == null);
+    };
+    AjouterPage.prototype.incorrectAge = function (input) {
+        return ((input < 0 || input > 113) && this.notNull(input));
     };
     AjouterPage = __decorate([
         Component({
