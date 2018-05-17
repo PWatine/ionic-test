@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { person } from '../Blacklist/person';
 import { Table } from '../pages/Injectables/Injectables';
 
+
 @NgModule({
   declarations: [
     MyApp,

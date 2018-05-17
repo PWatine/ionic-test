@@ -6,13 +6,7 @@
 
 <ion-content padding>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="search" [showCancelButton]="shouldShowCancel" (ionInput)="setSearch(search)" (ionCancel)="setSearch('')">
-    </ion-searchbar>
-  </ion-toolbar>
-  <button ion-button icon-start secondary color="dark" (click)="changeModify()"><ion-icon name="brush"></ion-icon>Modifier</button>
-
-
-  {{getSearch()}}{{modify()}}
+   
   <br /><br />
   <span *ngIf="isEmpty()">
     <mat-card>
@@ -24,26 +18,28 @@
 
   <span *ngIf="!isEmpty()">
     <ion-row>
-      <ion-col mat-header-cell col-5>Prénom</ion-col>
-      <ion-col mat-header-cell col-5>Nom</ion-col>
+      <ion-col mat-header-cell col-3>Prénom</ion-col>
+      <ion-col mat-header-cell col-3>Nom</ion-col>
       <ion-col mat-header-cell col-2>Age</ion-col>
     </ion-row>
 
 
     <ion-row *ngFor="let item of targets">
-      <ion-col mat-cell col-5 *ngIf="modify()">
+      <ion-col mat-cell col-3 *ngIf="modify()">
         <button ion-button color="danger" (click)="remove(item.id)"><ion-icon ios="ios-backspace" md="md-backspace"></ion-icon></button><input mat-input type="text" name="firstName" [(ngModel)]="item.firstName">
       </ion-col>
-      <ion-col mat-cell col-5 *ngIf="!modify()"> {{item.firstName}} </ion-col>
-      <ion-col mat-cell col-5 *ngIf="modify()"><input mat-input type="text" name="lastName" [(ngModel)]="item.lastName"></ion-col>
-      <ion-col mat-cell col-5 *ngIf="!modify()">{{item.lastName}}
+      <ion-col mat-cell col-3 *ngIf="!modify()"> {{item.firstName}}</ion-col>
+      <ion-col mat-cell col-3 *ngIf="modify()"><input mat-input type="text" name="lastName" [(ngModel)]="item.lastName"></ion-col>
+      <ion-col mat-cell col-3 *ngIf="!modify()">
+        {{item.lastName}}
       </ion-col>
 
       <ion-col mat-cell col-2 *ngIf="modify()"><input mat-input type="text" name="age" [(ngModel)]="item.age"></ion-col>
       <ion-col mat-cell col-2 *ngIf="!modify()">{{item.age}}</ion-col>
     </ion-row>
+    <button ion-button icon-start secondary color="dark" (click)="changeModify()"><ion-icon name="brush"></ion-icon>Modifier</button>
   </span>
- 
+
 
   <ion-fab right bottom color="dark">
     <button ion-fab color="dark" style="float: right;" (click)="goAddElement()"><img style="position:center;" src="../../assets/imgs/add.png" /></button>

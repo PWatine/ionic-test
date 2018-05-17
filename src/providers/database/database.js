@@ -14,38 +14,48 @@ var Database = /** @class */ (function () {
         this.storage = storage;
         this.counter = 0;
         this.id = 0;
-        this.storage.set('targets', []);
+        this.tempSpace = [];
+        this.targets = [];
+        this.storage.set('targets', this.tempSpace);
     }
     Database.prototype.isEmpty = function () {
-        if (this.counter == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (this.counter == 0);
     };
     Database.prototype.add = function (a, b, c) {
         var _this = this;
         var person = { firstName: a, lastName: b, age: c, id: this.id };
         this.id++;
         this.storage.get('targets').then(function (data) {
-            //if (data != null) {
             data.push(person);
             _this.storage.set('targets', data);
-            /*}
-            else {
-              let array = [];
-              array.push(person);
-              this.storage.set('targets', data)
-            }*/
         });
         this.counter++;
     };
+    Database.prototype.find = function () {
+    };
     Database.prototype.remove = function (id) {
         var _this = this;
-        this.storage.get('targets').then(function (data) { _this.targets = data; });
-        this.targets = this.targets.filter(function (targets) { return this.targets.id !== id; });
-        this.storage.push(this.targets);
+        console.log('1');
+        this.storage.get('targets').then(function (data) {
+            _this.targets = data;
+            _this.tempSpace = [];
+            console.log('2');
+            _this.targets.forEach(function (element) {
+                if (element.id != id) {
+                    _this.tempSpace.push(element);
+                }
+                ;
+                console.log('3');
+            });
+            console.log('4');
+            console.log('Got before: ' + _this.targets);
+            _this.targets = _this.tempSpace;
+            console.log('storing: ' + _this.targets);
+            _this.storage.set('targets', _this.tempSpace);
+            _this.counter--;
+        });
+        console.log('5');
+        console.log('Got: ' + this.targets);
     };
     Database.prototype.get = function (key) {
         return this.storage.get(key);
