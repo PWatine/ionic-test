@@ -8,9 +8,9 @@
     "\\src\\Blacklist",
     "\\src\\pages",
     "\\src\\pages\\ajouter",
-    "\\src\\providers",
-    "\\src\\providers\\database"
+    "\\src\\pages\\home",
+    "\\src\\providers"
   ],
-  "SelectedNode": "\\src\\providers\\database\\database.ts",
+  "SelectedNode": "\\src\\pages\\ajouter\\ajouter.ts",
   "PreviewInSolutionExplorer": false
 }
